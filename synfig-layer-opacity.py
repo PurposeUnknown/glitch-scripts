@@ -7,10 +7,11 @@ from xml.etree.ElementTree import ElementTree, Element
 # Parses through the file and timeshifts/changes opacity of all layers with specific text in description
 # this effectively makes it so 1 'image layer' is visible every frame duration (default 24 fps)
 
-base_dir = "/home/vee" + input("Give me a filepath: ")
+dir_start = os.getcwd()
+directory = dir_start + "/" + input("Give me a folder: ") + "/"
 
-if os.path.isdir(base_dir):
-    os.chdir(base_dir)
+if os.path.isdir(directory):
+    os.chdir(directory)
 
 animation = input("Enter the base animation: ")
 layerdesc = input("Give me the layer description: ")
@@ -25,7 +26,7 @@ for layer in root.iter("layer"):
         for element in layer:
 
             #duration = round(random.uniform(0, 0.18), 8)
-            duration = round(0.0416666666, 8)
+            duration = round(0.03333333, 8)
 
             # Opacity
             if element.attrib["name"] == "amount":
